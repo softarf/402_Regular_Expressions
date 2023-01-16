@@ -11,15 +11,23 @@ import re
 
 class Employee:
 
-    def __init__(self, all_fields) -> None:
+    def __init__(self, all_fields: List[str]) -> None:
         """Создаёт карточку заданного сотрудника."""
-        self.lastname: str = all_fields[0]
-        self.firstname: str = all_fields[1]
-        self.surname: str = all_fields[2]
-        self.organization: str = all_fields[3]
-        self.position: str = all_fields[4]
-        self.phone: str = all_fields[5]
-        self.email: str = all_fields[6]
+        self.lastname: str = ""
+        self.firstname: str = ""
+        self.surname: str = ""
+        self.organization: str = ""
+        self.position: str = ""
+        self.phone: str = ""
+        self.email: str = ""
+        len_arg: int = len(all_fields)
+        if len_arg >= 1: self.lastname = all_fields[0]
+        if len_arg >= 2: self.firstname = all_fields[1]
+        if len_arg >= 3: self.surname = all_fields[2]
+        if len_arg >= 4: self.organization = all_fields[3]
+        if len_arg >= 5: self.position = all_fields[4]
+        if len_arg >= 6: self.phone = all_fields[5]
+        if len_arg >= 7: self.email = all_fields[6]
 
     def __str__(self) -> str:
         """Переводит карточку сотрудника в печатаемый вид."""
@@ -73,7 +81,7 @@ class Employee:
             if len(list_item) > 1:
                 full_name[i + 1] = " ".join(list_item[1:]) + " " + full_name[i + 1]
         full_name[-1] = full_name[-1].strip()
-        self.lastname, self.firstname, self.surname = full_name[0], full_name[1], full_name[2]
+        self.lastname, self.firstname, self.surname = full_name
 
     def _fix_phone_number(self) -> None:
         """Приводит номер телефона сотрудника к виду +7(999)999-99-99 доб.9999."""
